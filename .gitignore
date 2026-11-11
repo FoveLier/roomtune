@@ -1,0 +1,15 @@
+# Build outputs
+desktop/**/bin/
+desktop/**/obj/
+desktop/.vs/
+desktop/**/*.user
+artifacts/
+mobile/unpackage/
+mobile/node_modules/
+mobile/.hbuilderx/
+*.log
+.DS_Store
+Thumbs.db
+# Local runtime data must never be committed
+RoomTuneData/
+config.json

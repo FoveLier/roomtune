@@ -1,0 +1,27 @@
+<Window x:Class="RoomTune.Desktop.Views.SyncWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RoomTune · 同步码" Width="700" Height="500"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource AppBackground}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="PC ↔ 手机同步码" FontSize="20" FontWeight="SemiBold" />
+            <TextBlock Text="同步码是项目 JSON 的 Base64 文本，不包含 AI Key；把它复制到手机端粘贴导入，或把手机导出的码粘贴到这里导入为新项目。" Style="{StaticResource SmallText}" TextWrapping="Wrap" Margin="0,6,0,0" />
+        </StackPanel>
+        <TextBox x:Name="CodeBox" Grid.Row="1" Margin="0,14,0,12" AcceptsReturn="True" TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto" FontFamily="Consolas" />
+        <WrapPanel Grid.Row="2">
+            <Button Content="复制同步码" Style="{StaticResource PrimaryButton}" Click="Copy_Click" Margin="0,0,8,8" />
+            <Button Content="从剪贴板粘贴" Click="Paste_Click" Margin="0,0,8,8" />
+            <Button Content="导入为新项目" Click="Import_Click" Margin="0,0,8,8" />
+            <Button Content="关闭" Click="Close_Click" Margin="0,0,8,8" />
+        </WrapPanel>
+        <TextBlock x:Name="StatusText" Grid.Row="2" Style="{StaticResource SmallText}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,0,12" />
+    </Grid>
+</Window>

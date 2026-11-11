@@ -1,0 +1,24 @@
+<UserControl x:Class="RoomTune.Desktop.Views.ReportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="报告" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="把房间、风险、摆位、声装和参数卡整理成可交付报告；AI 只解释，不替代规则结果。" Style="{StaticResource PageSub}" />
+            <WrapPanel Margin="0,16,0,10">
+                <Button Content="刷新报告" Style="{StaticResource PrimaryButton}" Click="Refresh_Click" Margin="0,0,8,8" />
+                <Button Content="导出 Markdown" Click="ExportMarkdown_Click" Margin="0,0,8,8" />
+                <Button Content="导出 HTML" Click="ExportHtml_Click" Margin="0,0,8,8" />
+                <Button Content="复制报告" Click="Copy_Click" Margin="0,0,8,8" />
+                <Button x:Name="AiButton" Content="AI 解释（可选）" Click="Ai_Click" Margin="0,0,8,8" />
+            </WrapPanel>
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBox x:Name="ReportBox" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="480"
+                             VerticalScrollBarVisibility="Auto" BorderThickness="0" Background="Transparent" FontSize="13" />
+                </StackPanel>
+            </Border>
+            <TextBlock x:Name="StatusText" Style="{StaticResource SmallText}" Margin="0,10,0,16" TextWrapping="Wrap" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,8 @@
+{
+  "name": "roomtune-mobile",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/acoustics.test.mjs"
+  }
+}

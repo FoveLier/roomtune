@@ -1,0 +1,72 @@
+<UserControl x:Class="RoomTune.Desktop.Views.AnalysisView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:RoomTune.Desktop.Controls">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="声学分析" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="驻波、Schroeder、RT60、SBIR、摆位对称与动态余量的确定性诊断；数字来自当前房间档案。" Style="{StaticResource PageSub}" />
+
+            <WrapPanel Margin="0,18,0,0">
+                <Border Style="{StaticResource Card}" Width="172" Margin="0,0,10,10">
+                    <StackPanel><TextBlock Text="体积" Style="{StaticResource LabelText}" /><TextBlock x:Name="VolumeText" FontSize="22" FontWeight="SemiBold" Margin="0,4,0,0" /></StackPanel>
+                </Border>
+                <Border Style="{StaticResource Card}" Width="172" Margin="0,0,10,10">
+                    <StackPanel><TextBlock Text="估算 RT60" Style="{StaticResource LabelText}" /><TextBlock x:Name="Rt60Text" FontSize="22" FontWeight="SemiBold" Margin="0,4,0,0" /></StackPanel>
+                </Border>
+                <Border Style="{StaticResource Card}" Width="172" Margin="0,0,10,10">
+                    <StackPanel><TextBlock Text="Schroeder" Style="{StaticResource LabelText}" /><TextBlock x:Name="SchroederText" FontSize="22" FontWeight="SemiBold" Margin="0,4,0,0" /></StackPanel>
+                </Border>
+                <Border Style="{StaticResource Card}" Width="172" Margin="0,0,10,10">
+                    <StackPanel><TextBlock Text="动态余量" Style="{StaticResource LabelText}" /><TextBlock x:Name="HeadroomText" FontSize="22" FontWeight="SemiBold" Margin="0,4,0,0" /></StackPanel>
+                </Border>
+                <Border Style="{StaticResource Card}" Width="172" Margin="0,0,10,10">
+                    <StackPanel><TextBlock Text="模态数量" Style="{StaticResource LabelText}" /><TextBlock x:Name="ModeCountText" FontSize="22" FontWeight="SemiBold" Margin="0,4,0,0" /></StackPanel>
+                </Border>
+                <Border Style="{StaticResource Card}" Width="190" Margin="0,0,10,10">
+                    <StackPanel><TextBlock Text="置信度" Style="{StaticResource LabelText}" /><TextBlock x:Name="ConfidenceText" FontSize="15" FontWeight="SemiBold" Margin="0,7,0,0" TextWrapping="Wrap" /></StackPanel>
+                </Border>
+            </WrapPanel>
+
+            <Grid Margin="0,8,0,0">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="1.4*" /><ColumnDefinition Width="0.6*" /></Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Style="{StaticResource Card}" Margin="0,0,14,14">
+                    <StackPanel>
+                        <TextBlock Text="房间模态分布（16–300 Hz）" Style="{StaticResource SectionTitle}" />
+                        <controls:ModeChartControl x:Name="ModeChart" Height="260" />
+                        <TextBlock Text="柱越高表示该频段模态越密；蓝色=轴向、橙色=切向、灰色=斜向。" Style="{StaticResource SmallText}" Margin="0,8,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="模态列表" Style="{StaticResource SectionTitle}" />
+                        <ListBox x:Name="ModeList" Height="260" BorderThickness="0" Background="Transparent" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="1.2*" /><ColumnDefinition Width="0.8*" /></Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Style="{StaticResource Card}" Margin="0,0,14,14">
+                    <StackPanel>
+                        <TextBlock Text="风险与处理" Style="{StaticResource SectionTitle}" />
+                        <ListBox x:Name="RiskList" MinHeight="150" BorderThickness="0" Background="Transparent" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="边界干涉 / 第一反射" Style="{StaticResource SectionTitle}" />
+                        <TextBlock Text="SBIR 候选" Style="{StaticResource LabelText}" />
+                        <ListBox x:Name="SbirList" Height="126" BorderThickness="0" Background="Transparent" />
+                        <TextBlock Text="第一反射点" Style="{StaticResource LabelText}" Margin="0,8,0,0" />
+                        <ListBox x:Name="ReflectionList" Height="90" BorderThickness="0" Background="Transparent" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <WrapPanel Margin="0,0,0,10">
+                <Button Content="重新分析" Style="{StaticResource PrimaryButton}" Click="Refresh_Click" />
+                <TextBlock x:Name="StatusText" Style="{StaticResource SmallText}" Margin="8,8,0,0" />
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

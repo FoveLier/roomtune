@@ -1,0 +1,46 @@
+<UserControl x:Class="RoomTune.Desktop.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="设置" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="本地优先。PC 数据写入 F:\RoomTuneData；AI Key 仅存本机配置，不写入源码或提交历史。" Style="{StaticResource PageSub}" />
+            <Border Style="{StaticResource Card}" Margin="0,18,0,14">
+                <StackPanel>
+                    <TextBlock Text="AI 声学解释（可选）" Style="{StaticResource SectionTitle}" />
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="110" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <TextBlock Text="Base URL" Style="{StaticResource LabelText}" />
+                        <TextBox x:Name="BaseUrlBox" Grid.Column="1" />
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="110" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <TextBlock Text="模型" Style="{StaticResource LabelText}" />
+                        <TextBox x:Name="ModelBox" Grid.Column="1" />
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="110" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <TextBlock Text="API Key" Style="{StaticResource LabelText}" />
+                        <PasswordBox x:Name="KeyBox" Grid.Column="1" />
+                    </Grid>
+                    <CheckBox x:Name="UseAiBox" Content="启用 AI 解释按钮（不启用也可用本地报告）" Margin="110,0,0,0" />
+                    <TextBlock Text="示例：https://api.deepseek.com/v1；模型 deepseek-chat。任何 OpenAI-compatible 服务均可。Key 存在 F:\RoomTuneData\config.json。" Style="{StaticResource SmallText}" Margin="110,8,0,0" TextWrapping="Wrap" />
+                    <WrapPanel Margin="110,14,0,0">
+                        <Button Content="保存设置" Style="{StaticResource PrimaryButton}" Click="Save_Click" Margin="0,0,8,8" />
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Text="数据与同步" Style="{StaticResource SectionTitle}" />
+                    <TextBlock x:Name="DataText" TextWrapping="Wrap" />
+                    <TextBlock Text="PC 项目：F:\RoomTuneData\projects\*.json；导出报告：F:\RoomTuneData\exports；配置：config.json。手机端通过同步码与 PC 交换项目。" Style="{StaticResource SmallText}" Margin="0,8,0,0" TextWrapping="Wrap" />
+                    <WrapPanel Margin="0,14,0,0">
+                        <Button Content="打开数据目录" Click="OpenFolder_Click" Margin="0,0,8,8" />
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+            <TextBlock x:Name="StatusText" Style="{StaticResource SmallText}" Margin="0,0,0,16" TextWrapping="Wrap" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

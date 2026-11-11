@@ -1,0 +1,70 @@
+<UserControl x:Class="RoomTune.Desktop.Views.PlanView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="校正方案" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="先免费摆位，再软装/声装，最后才考虑 EQ；每条建议都写明取舍和下一步。" Style="{StaticResource PageSub}" />
+            <WrapPanel Margin="0,16,0,10">
+                <Button Content="应用对称摆位" Style="{StaticResource PrimaryButton}" Click="ApplyBalanced_Click" Margin="0,0,8,8" />
+                <Button Content="保存当前方案" Click="SaveScheme_Click" Margin="0,0,8,8" />
+                <Button Content="导出同步码" Click="SyncExport_Click" Margin="0,0,8,8" />
+                <Button Content="复制参数卡" Click="CopyCard_Click" Margin="0,0,8,8" />
+            </WrapPanel>
+
+            <TextBlock Text="摆位方案" Style="{StaticResource SectionTitle}" />
+            <ItemsControl x:Name="SchemeList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="SemiBold" />
+                                    <TextBlock Grid.Column="1" Text="{Binding ScoreText}" Foreground="{StaticResource Accent}" FontWeight="SemiBold" />
+                                </Grid>
+                                <TextBlock Text="{Binding Summary}" Foreground="{StaticResource TextSecondary}" TextWrapping="Wrap" Margin="0,6,0,0" />
+                                <TextBlock Text="{Binding ProsText}" Foreground="{StaticResource Success}" TextWrapping="Wrap" Margin="0,8,0,0" />
+                                <TextBlock Text="{Binding ConsText}" Foreground="{StaticResource Warning}" TextWrapping="Wrap" Margin="0,4,0,0" />
+                                <TextBlock Text="{Binding StepsText}" TextWrapping="Wrap" LineHeight="21" Margin="0,8,0,0" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="声学装修清单" Style="{StaticResource SectionTitle}" Margin="0,8,0,10" />
+            <ItemsControl x:Name="TreatmentList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}" Margin="0,0,0,10" Padding="14">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="44" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding PriorityText}" Foreground="{StaticResource Accent}" FontWeight="SemiBold" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Title}" FontWeight="SemiBold" />
+                                    <TextBlock Grid.Column="2" Text="{Binding BudgetText}" Foreground="{StaticResource TextSecondary}" />
+                                </Grid>
+                                <TextBlock Text="{Binding Location}" Style="{StaticResource SmallText}" Margin="44,5,0,0" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding SizeText}" Style="{StaticResource SmallText}" Margin="44,4,0,0" />
+                                <TextBlock Text="{Binding Effect}" TextWrapping="Wrap" Margin="44,4,0,0" />
+                                <TextBlock Text="{Binding FrequencyRange, StringFormat=目标频段：{0}}" Style="{StaticResource SmallText}" Margin="44,4,0,0" />
+                                <TextBlock Text="{Binding Note}" Style="{StaticResource SmallText}" Margin="44,4,0,0" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="校准参数卡（估算起点）" Style="{StaticResource SectionTitle}" Margin="0,8,0,10" />
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBox x:Name="ParameterBox" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="230"
+                             VerticalScrollBarVisibility="Auto" BorderThickness="0" Background="Transparent" FontFamily="Consolas" />
+                    <TextBlock Text="没有 UMIK-1/REW 实测时，分频/延迟/相位/PEQ 只作起点；深谷不要硬拉。" Style="{StaticResource SmallText}" Margin="0,8,0,0" TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+            <TextBlock x:Name="StatusText" Style="{StaticResource SmallText}" Margin="0,10,0,16" TextWrapping="Wrap" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
